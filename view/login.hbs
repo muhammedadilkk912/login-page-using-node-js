@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+      span{
+        color: red;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+</head>
+<body>
+    <section class="vh-100" style="background-color: #508bfc;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <form action="/" method="POST" onsubmit="handleFormSubmit(event)">
+      
+                  <h3 class="mb-2">Sign in</h3>
+      
+                  <div data-mdb-input-init class="form-outline ">
+                    <input type="name" name='email' class="form-control form-control-lg" id="username"/>
+                    <label class="form-label" for="typeEmailX-2">username</label>
+                    {{!-- <p>{{}}</p> --}}
+                  </div><span id="user"> &nbsp;{{#if errors.username}}{{errors.username}}{{/if}}</span><br>
+      
+                  <div data-mdb-input-init class="form-outline ">
+                    <input type="password"name='password'  class="form-control form-control-lg" id="password"/>
+                    <label class="form-label" for="typePasswordX-2">Password</label>
+                   
+                  </div> <span id="pass">&nbsp;{{#if errors.password}}{{errors.password}}{{/if}}</span>
+      
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-start mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                    <label class="form
+                    -check-label" for="form1Example3"> Remember password </label>
+                  </div>
+      
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                </form>
+                 
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script>
+       function handleFormSubmit(event) {
+
+            // Retrieve input values
+            const email = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            let user_error=document.getElementById('user')
+            let pas_error=document.getElementById('pass')
+
+            if(email==''){
+              user_error.innerHTML='email is required'
+              event.preventDefault()
+              
+
+            }else if(!/^[A-Za-z]+$/.test(email)){
+               user_error.innerHTML='usename should be letters'
+              event.preventDefault()
+              
+
+            }
+            
+            else{
+              user_error.innerHTML=''
+            }
+             if(password==''){
+              pas_error.innerHTML='password is reqired'
+              event.preventDefault()
+
+            }
+            else if(password.length<8 ){
+               pas_error.innerHTML='password mustcontain 8 numbers'
+              event.preventDefault()
+
+            }
+            else if(password.length>16 ){
+               pas_error.innerHTML='password does not exceed 16 numbers'
+              event.preventDefault()
+
+            }
+            
+            
+            else{
+              pas_error.innerHTML=''
+            }
+
+          
+            
+            // If validation passes, the form will submit to the server
+            console.log("Validation passed!");
+            console.log("Email:", email);
+            console.log("Password:", password);
+        }
+    </script>
+   
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
+
+</body>
+</html>
